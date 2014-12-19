@@ -1,9 +1,9 @@
 <?php
-namespace Album\Model;
+namespace Timeline\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class AlbumTable
+class TimelineTable
 {
     protected $tableGateway;
 
@@ -18,7 +18,7 @@ class AlbumTable
         return $resultSet;
     }
 
-    public function getAlbum($id)
+    public function getTimeline($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
@@ -29,26 +29,35 @@ class AlbumTable
         return $row;
     }
 
-    public function saveAlbum(Album $album)
+    public function saveTimeline(Timeline $timeline)
     {
         $data = array(
-            'artist' => $album->artist,
-            'title'  => $album->title,
+            'id' => $timeline->id,
+            'startdate'  => $timeline->startdate,
+            'enddate' => $timeline->enddate,
+            'headline'  => $timeline->headline,
+            'text' => $timeline->text,
+            'media'  => $timeline->media,
+            'mediacredit' => $timeline->mediacredit,
+            'mediacaption'  => $timeline->mediacaption,
+            'mediathumbnail' => $timeline->mediathumbnail,
+            'type'  => $timeline->type,
+            'tag' => $timeline->tag,
         );
 
-        $id = (int) $album->id;
+        $id = (int) $timeline->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if ($this->getAlbum($id)) {
+            if ($this->getTimeline($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Album id does not exist');
+                throw new \Exception('Timeline id does not exist');
             }
         }
     }
 
-    public function deleteAlbum($id)
+    public function deleteTimeline($id)
     {
         $this->tableGateway->delete(array('id' => (int) $id));
     }

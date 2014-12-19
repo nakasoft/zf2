@@ -11,14 +11,30 @@
 
  <table class="table">
  <tr>
-     <th>Title</th>
-     <th>Artist</th>
+     <th>Start Date</th>
+     <th>End Date</th>
+     <th>Headline</th>
+     <th>Text</th>
+     <th>Media</th>
+     <th>Media Credit</th>
+     <th>Media Caption</th>
+     <th>Media Thumbnail</th>
+     <th>Type</th>
+     <th>Tag</th>
      <th>&nbsp;</th>
  </tr>
  <?php foreach ($timelines as $timeline) : ?>
  <tr>
-     <td><?php echo $this->escapeHtml($timeline->title);?></td>
-     <td><?php echo $this->escapeHtml($timeline->artist);?></td>
+     <td><?php echo $this->escapeHtml($timeline->startdate);?></td>
+     <td><?php echo $this->escapeHtml($timeline->enddate);?></td>
+     <td><?php echo $this->escapeHtml($timeline->headline);?></td>
+     <td><?php echo $this->escapeHtml($timeline->text);?></td>
+     <td><?php echo $this->escapeHtml($timeline->media);?></td>
+     <td><?php echo $this->escapeHtml($timeline->mediacredit);?></td>
+     <td><?php echo $this->escapeHtml($timeline->mediacaption);?></td>
+     <td><?php echo $this->escapeHtml($timeline->mediathumbnail);?></td>
+     <td><?php echo $this->escapeHtml($timeline->type);?></td>
+     <td><?php echo $this->escapeHtml($timeline->tag);?></td>
      <td>
          <a href="<?php echo $this->url('timeline',
              array('action'=>'edit', 'id' => $timeline->id));?>">Edit</a>

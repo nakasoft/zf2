@@ -8,16 +8,32 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Timeline implements InputFilterAwareInterface
  {
-     public $id;
-     public $artist;
-     public $title;
-     protected $inputFilter;                       // <-- Add this variable
+    public $id;
+    public $startdate;
+    public $enddate;
+    public $headline;
+    public $text;
+    public $media;
+    public $mediacredit;
+    public $mediacaption;
+    public $mediathumbnail;
+    public $type;
+    public $tag;
+    protected $inputFilter;                       // <-- Add this variable
 
      public function exchangeArray($data)
      {
-         $this->id     = (isset($data['id']))     ? $data['id']     : null;
-         $this->artist = (isset($data['artist'])) ? $data['artist'] : null;
-         $this->title  = (isset($data['title']))  ? $data['title']  : null;
+         $this->id             = (isset($data['id_timeline'])) ? $data['id_timeline'] : null;
+         $this->startdate      = (isset($data['start_date'])) ? $data['start_date'] : null;
+         $this->enddate        = (isset($data['end_date'])) ? $data['end_date'] : null;
+         $this->headline       = (isset($data['headline'])) ? $data['headline'] : null;
+         $this->text           = (isset($data['text'])) ? $data['text'] : null;
+         $this->media          = (isset($data['media'])) ? $data['media'] : null;
+         $this->mediacredit    = (isset($data['media_credit'])) ? $data['media_credit'] : null;
+         $this->mediacaption   = (isset($data['media_caption'])) ? $data['media_caption'] : null;
+         $this->mediathumbnail = (isset($data['media_thumbnail'])) ? $data['media_thumbnail'] : null;
+         $this->type           = (isset($data['type'])) ? $data['type'] : null;
+         $this->tag            = (isset($data['tag_id_tag'])) ? $data['tag_id_tag'] : null;
      }
      
      // Add the following method:
@@ -46,7 +62,7 @@ class Timeline implements InputFilterAwareInterface
              ));
 
              $inputFilter->add(array(
-                 'name'     => 'artist',
+                 'name'     => 'startdate',
                  'required' => true,
                  'filters'  => array(
                      array('name' => 'StripTags'),
@@ -65,7 +81,7 @@ class Timeline implements InputFilterAwareInterface
              ));
 
              $inputFilter->add(array(
-                 'name'     => 'title',
+                 'name'     => 'enddate',
                  'required' => true,
                  'filters'  => array(
                      array('name' => 'StripTags'),
